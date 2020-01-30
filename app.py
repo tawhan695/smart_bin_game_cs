@@ -6,22 +6,19 @@ import threading
 import time
 import firebaseBD
 ## config ##
-ID_Device = 'VCuTbRfyv3146eIR3oSx'
-Type ={'1','2','3','4'}
+ID_Device = 'VCuTbRfyv3146eIR3oSx'  # id ของถึงขยะ ตั้งค่าตาม firebase
+Type = ['plastic','glass','metal','general'] 
 
 NameImage ="null"
 class dataImage: 
     def __init__(self, img = 0): 
          self._img = img
-      
     # getter method 
     def get_img(self): 
         return self._img 
-      
     # setter method 
-    def set_img(self, img):
-        
-        self._img = firebaseBD.UploadImage(img)
+    def set_img(self, img): 
+        self._img = firebaseBD.UploadImage(img)  #ส่งค่ารูป ให้บันทึรูป
 
 
 class Run:
@@ -53,6 +50,12 @@ class Run:
             time.sleep(1) 
     # def FirebaseSent(self):
     #     firebaseBD.
+    def sensor(self): # ฟังชัน ตรวจจับขยะ เมื่อวางขยะลงถาดวางขยะ
+        print('มีขยะ')
+
+
+    def stepper(self):
+        print('มอเตอร์ทำงาน')
 
 
 #special valible
