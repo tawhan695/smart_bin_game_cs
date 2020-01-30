@@ -1,3 +1,4 @@
+# dt_string2 = now.strftime("%d-%m-%Y,%H:%M:%S")
 import pyrebase
 from datetime import datetime
 import time
@@ -8,13 +9,14 @@ from firebase_admin import firestore
 import random
 
 now = datetime.now()
-dt_string = now.strftime("%d-%m-%Y,%H:%M:%S")
-timestamp = datetime.timestamp(now)
+Date = now.strftime("%Y-%m-%d")
+Time = now.strftime("%H:%M:%S")
+dt_string =now.strftime("%d-%m-%Y|%H:%M:%S")
 
 
 ## config ##
-#ID_Device = 'VCuTbRfyv3146eIR3oSx' # 1
-ID_Device ='ZDJIXp3iqqyJhVKHWAdJ' #2 
+ID_Device = 'VCuTbRfyv3146eIR3oSx' # 1
+# ID_Device ='ZDJIXp3iqqyJhVKHWAdJ' #2 
 
 Type =['plastic','glass','metal','general']
 
@@ -29,7 +31,8 @@ def Insert_Data(GarbageType,BinID):
   data = {
     u'GarbageType': str(GarbageType),
     u'Image': UploadImage(),
-    u'DateTime': datetime.now(),
+    u'Date': str(Date),
+    u'Time': str(time),
     u'BinID': str(BinID),
     }
   db.collection(u'Data_Garbage').document().set(data)
