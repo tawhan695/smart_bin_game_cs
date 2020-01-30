@@ -18,6 +18,6 @@
         
 ฟังชันเคลื่นที่กลับที่เิ่มต้น def Back(self):
   
-   
+อ้างอิง https://www.rototron.info/raspberry-pi-stepper-motor-tutorial/
 ```
  
