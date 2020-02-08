@@ -20,4 +20,14 @@
   
 อ้างอิง https://www.rototron.info/raspberry-pi-stepper-motor-tutorial/
 ```
- 
+--ติดตั้ง fastai 
+```
+pip3 install fastai
+
+```
+--ติดตั้ง เชื่อมต่อกับ firebase
+```
+1. pip3 install Pyrebase
+2. pip3 install firebase-admin
+```
+pip3 install opencv-python==3.4.6.27
