@@ -5,7 +5,7 @@ import time
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
+import cv2
 
 now = datetime.now()
 dt_string = now.strftime("%d-%m-%Y,%H:%M:%S")
@@ -45,3 +45,9 @@ def Insert_Data(GarbageType,BinID,PathImg):   # บันทึกลง firebas
     u'BinID': str(BinID),
     }
   db.collection(u'Data_Garbage').document().set(data) #insert data
+cap = cv2.VideoCapture(0)
+__,img = cap.read()
+_u,gg=cv2.imwrite('E:/smart_bin_game_cs/imggg.jpg',img)
+# img = ('E:/smart_bin_game_cs/geeks.jpg')
+print(_u)
+# print(UploadImage(img))

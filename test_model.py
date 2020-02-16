@@ -1,27 +1,31 @@
-from fastai.vision import *
+import keras    
+from keras.models import load_model, model_from_json
+from keras.applications import ResNet50
+from keras.preprocessing import image #*
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
 import cv2
-from PIL import Image as PImage
-import time 
-print('delay 3 sc')
-# time.sleep(3)
-# cap  = cv2.VideoCapture(0)
-learn = load_learner('E:/smart_bin_game_cs','export.pkl')
-print(learn.data)
-# img = cv2.imread('data/train/cardboard/cardboard12.jpg')
-# img = cv2.imread('data/train/metal/metal7.jpg')
-img = cv2.imread('data/train/plastic/plastic5.jpg')
-# ret, frame = cap.read()
-# img = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
-pil_im = PImage.fromarray(img) 
-x = pil2tensor(pil_im ,np.float32)
-preds_num = learn.predict(Image(x))
-print(preds_num[1])
-# preds_num = learn.predict(img) #predict garbage
-# print(('type : ',preds_num[3])) #name
-print((preds_num)) #data all
-# cv2.imwrite('type::'+str(preds_num[0])+'.jpg',img)
-# cv2.imshow(''+str(preds_num[3]),img) 
+#####
+def Predict():
+    # load
+    model=ResNet50(weights='imagenet')###
+    model = load_model('data/models/keras/model.h5')
+    # load
+    model.load_weights('data/models/keras/weights.h5')
+
+    img_path = 'data/validation/glass/glass582.jpg'
+    img = image.load_img(img, target_size=(224, 224))
+    x = image.img_to_array(img_path)
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+
+    preds = model.predict(x)
+    print(preds)
+# cap = cv2.VideoCapture(0)
+# cap.set(3, 224)
+# cap.set(4, 224)
+# __,img = cap.read()
+# cv2.imshow('show',img)
+Predict()
 # cv2.waitKey(0)
-# # print(type(img))
-# pil_im = Image.fromarray(img) 
-# x = pil2tensor(img ,np.float32)
